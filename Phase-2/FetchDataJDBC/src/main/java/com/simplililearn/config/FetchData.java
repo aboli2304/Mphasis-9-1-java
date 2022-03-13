@@ -15,21 +15,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.practice.config.DBCOnfig;
-
 @WebServlet("/fetch")
 public class FetchData extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+	
 		PrintWriter out=response.getWriter();
 		response.setContentType("text/html");
 		Properties props= new Properties();
 		InputStream in= getServletContext().getResourceAsStream("/WEB-INF/config.properties");
 		props.load(in);
 		Connection conn= DBCOnfig.getConnect(props);
-
+		
 		if(conn!=null)
 		{
 			try {
@@ -38,7 +36,7 @@ public class FetchData extends HttpServlet {
 				out.print("<h1>Product List</h1><hr>");
 				out.print("<table border=1 cellspacing=0 cellpadding=10><tr><th>ID</th><th>Name</th><th>Price</th>");
 				out.print("<th>Date</th></tr>");
-
+				
 				while(rs.next())
 				{
 					out.print("<tr>");
@@ -47,7 +45,7 @@ public class FetchData extends HttpServlet {
 					out.println("</tr>");
 				}
 				out.print("</table>");
-
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

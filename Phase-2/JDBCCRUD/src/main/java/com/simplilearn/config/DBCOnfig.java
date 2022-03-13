@@ -19,13 +19,13 @@ public class DBCOnfig {
 			//load driver
 			Class.forName(driver);
 			connection= DriverManager.getConnection(url,username,password);
-
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-
+		
 		return connection;
 	}
 }
